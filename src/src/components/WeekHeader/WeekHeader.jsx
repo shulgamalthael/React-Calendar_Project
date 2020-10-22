@@ -19,7 +19,7 @@ const CalendarWeekHeader = ({ currentWeek }) => {
         return (
           <div key={idx} className={dayLableClassNamemoment}>
             <span className="calendar__day-name">
-              {moment(day, 'YYYY MM DD').format("ddd")}
+              {moment(day, 'YYYY MM DD').format("dddd")}
             </span>
             <span className="calendar__day-number">
               {moment(day, 'YYYY MM DD').format("DD")}

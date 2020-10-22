@@ -3,7 +3,7 @@ import Header from './components/Header/Header';
 import { getEventsList } from './services/gateway';
 import { initialFormData } from './storage';
 import Week from './components/Week/Week';
-import CalendarWeekHeader from './components/CalendarWeekHeader/CalendarWeekHeader';
+import CalendarWeekHeader from './components/WeekHeader/WeekHeader';
 import Modal from './components/Modal/Modal';
 import CreateEventForm from './components/CreateEventForm/CreateEventForm'
 
