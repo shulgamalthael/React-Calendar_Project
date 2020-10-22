@@ -1,25 +1,45 @@
 import React from 'react';
-import Day from '../day/Day';
-
+import moment from 'moment';
+import PropTypes from 'prop-types'; 
+import Sidebar from '../Sidebar/Sidebar';
+import Day from '../Day/Day';
+import { generateWeek } from '../../utils';
 import './week.scss';
 
+const Week = ({ 
+  events, 
+  currentWeek, 
+  fetchEvents, 
+  setNewEventData,
+  toggleVisibleModal
+}) => {
+  const week = generateWeek(currentWeek);
 
-const Week = ({ weekDates, events }) => {
+  const getEventsInCurrentDay = day => events.filter(({ date }) => date === day);
 
-    return (
-        <div className="calendar__week">
-            {weekDates.map(dayStart => {
-                const dayEnd = new Date(dayStart.getTime()).setHours(dayStart.getHours() + 24);
-
-                //getting all events from the day we will render
-                const dayEvents = events.filter(event => event.dateFrom > dayStart && event.dateTo < dayEnd);
-
-                return (
-                    <Day key={dayStart.getDate()} dataDay={dayStart.getDate()} dayEvents={dayEvents} />
-                )
-            })}
-        </div>
-    )
+  return (
+    <div className="calendar__body">
+      <Sidebar />
+      <div className="calendar__week">
+        {week.map((day, idx) =>
+          <Day
+            key={idx}
+            eventsInCurrentDay={getEventsInCurrentDay(day)}
+            currentDay={day}
+            fetchEvents={fetchEvents}
+            setNewEventData={setNewEventData}
+            toggleVisibleModal={toggleVisibleModal}/>
+        )}
+      </div>
+    </div>
+  )
+}
+Week.propTypes = {
+  events: PropTypes.array.isRequired, 
+  currentWeek: PropTypes.number.isRequired, 
+  fetchEvents: PropTypes.func.isRequired, 
+  setNewEventData: PropTypes.func.isRequired,
+  toggleVisibleModal: PropTypes.func.isRequired,
 }
 
-export default Week;
+export default Week

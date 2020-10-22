@@ -1,29 +1,31 @@
 import React from 'react';
-
-import { months } from '../../utils/dateUtils.js';
-
+import PropTypes from 'prop-types'; 
+import Navigation from '../Navigation/Navigation'
 import './header.scss';
 
-const Header = () => {
-    return (
-        <header className="header">
-            <button className="button create-event-btn">
-                <i className="fas fa-plus create-event-btn__icon"></i>Create
-            </button>
-            <div className="navigation">
-                <button className="navigation__today-btn button">
-                    Today
-                </button>
-                <button className="icon-button navigation__nav-icon">
-                    <i className="fas fa-chevron-left"></i>
-                </button>
-                <button className="icon-button navigation__nav-icon">
-                    <i className="fas fa-chevron-right"></i>
-                </button>
-                <span className="navigation__displayed-month"></span>
-            </div>
-        </header>
-    )
+const Header = ({
+  setCurrentWeek,
+  currentWeek,
+  toggleVisibleModal
+}) => {
+  return (
+    <header className="header">
+      <button
+        className="create-event-button"
+        onClick={() => toggleVisibleModal(true)}
+      >
+          <i className="fas fa-plus create-event-btn__icon"></i>
+          Create
+      </button>
+      <Navigation setCurrentWeek={setCurrentWeek} currentWeek={currentWeek} />
+    </header>
+  )
 }
 
-export default Header;
+Header.propTypes = {
+  setCurrentWeek: PropTypes.func.isRequired,
+  currentWeek: PropTypes.number.isRequired,
+  toggleVisibleModal: PropTypes.func.isRequired,
+}
+
+export default Header

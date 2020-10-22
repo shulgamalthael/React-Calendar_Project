@@ -1,22 +1,39 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import EvetTooltip from './EventToolTip';
 import './event.scss';
 
+const Event = ({
+  fetchEvents,
+  eventData
+}) => {
+  const [visibleTooltip, toggleVisibleTooltip] = useState(false);
 
-const Event = ({ height, marginTop, title, time }) => {
+  const { id, title, description, timeStart, timeEnd } = eventData;
 
-    const eventStyle = {
-        height,
-        marginTop
-    }
+  return (
+    <div className="event" >
+      <button
+        className='event__close-btn close-btn'
+        onClick={() => toggleVisibleTooltip(!visibleTooltip)}
+      >+</button>
+      <div className="event__title">{title}</div>
+      <div className="event__time">{`${timeStart} - ${timeEnd}`}</div>
+      <div className='event__description'>{description}</div>
+      {visibleTooltip &&
+        <EvetTooltip
+          id={id}
+          fetchEvents={fetchEvents}
+          toggleVisibleTooltip={toggleVisibleTooltip}
+        />}
+    </div>
+  )
+}
 
-    return (
-        <div style={eventStyle} className="event" >
-            <div className="event__title">{title}</div>
-            <div className="event__time">{time}</div>
-        </div >
-    )
+Event.propTypes = {
+  fetchEvents: PropTypes.func.isRequired,
+  eventData: PropTypes.object.isRequired,
 }
 
 
-export default Event;
+export default Event

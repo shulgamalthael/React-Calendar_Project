@@ -1,31 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import moment from 'moment';
+import PropTypes from 'prop-types'; 
+import Event from '../Event/Event';
+import './hour.scss';
 
-import Event from '../event/Event';
-import { formatMins } from '../../utils/dateUtils.js';
+const Hour = ({ 
+  hour, 
+  currentDay, 
+  eventData, 
+  fetchEvents 
+}) => {
+  const [minutes, setMinutes] = useState(moment().format('mm'))
 
+  useEffect(() => {
+    const intervalId = setInterval(() =>
+      setMinutes(moment().format('mm')), 60000);
 
-const Hour = ({ dataHour, hourEvents }) => {
+    return () => clearInterval(intervalId);
+  });
 
-    return (
-        <div className="calendar__time-slot" data-time={dataHour + 1}>
-            {/* if no events in the current hour nothing will render here */}
-            {hourEvents.map(({ id, dateFrom, dateTo, title }) => {
-                const eventStart = `${dateFrom.getHours()}:${formatMins(dateFrom.getMinutes())}`;
-                const eventEnd = `${dateTo.getHours()}:${formatMins(dateTo.getMinutes())}`;
+  
 
-                return (
-                    <Event
-                        key={id}
-                        //calculating event height = duration of event in minutes
-                        height={(dateTo.getTime() - dateFrom.getTime()) / (1000 * 60)}
-                        marginTop={dateFrom.getMinutes()}
-                        time={`${eventStart} - ${eventEnd}`}
-                        title={title}
-                    />
-                )
-            })}
-        </div>
-    )
+  return (
+    <div className="calendar__hour" data-date={currentDay} data-timestart={hour}>
+      {eventData
+        ? <Event
+          eventData={eventData}
+          fetchEvents={fetchEvents}/>
+        : null}
+      {`${currentDay} ${hour}` === moment().format('YYYY-MM-DD HH')
+        && <div className='calendar__hour__red-line' style={{ top: `${minutes}px` }}></div>
+      }
+    </div>
+  )
 }
 
-export default Hour;
+Hour.propTypes = {
+  hour: PropTypes.string.isRequired, 
+  currentDay: PropTypes.string.isRequired, 
+  eventData: PropTypes.object, 
+  fetchEvents: PropTypes.func.isRequired, 
+}
+
+export default Hour

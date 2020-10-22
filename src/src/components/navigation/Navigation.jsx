@@ -1,19 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
+import moment from 'moment';
+import PropTypes from 'prop-types'; 
+import { getWeekStartDay } from '../../utils'
+import './navigation.scss';
 
-import { days } from '../../utils/dateUtils.js';
+const Navigation = ({setCurrentWeek, currentWeek}) => {
 
-const Navigation = ({ weekDates }) => {
+  const weekStartDay = getWeekStartDay(currentWeek);
+  const weekEndDay = moment(weekStartDay).day(7);
+  
+  const displayCorrectData = format => weekStartDay.format(format) !== weekEndDay.format(format)
+  ? `${weekStartDay.format(format)} - ${weekEndDay.format(format)}`
+  : `${weekStartDay.format(format)}`;
 
-    return (
-        <header className="calendar__header">
-            {weekDates.map(dayDate =>
-                <div className="calendar__day-label day-label">
-                    <span className="day-label__day-name">{days[dayDate.getDay()]}</span>
-                    <span className="day-label__day-number">{dayDate.getDate()}</span>
-                </div>
-            )}
-        </header>
-    )
+  const correctMonthsString = displayCorrectData('MMMM');
+  const correctYearsString = displayCorrectData('YYYY');
+
+  return (
+    <div className="navigation">
+      <button className="navigation__today-btn" onClick={() => setCurrentWeek(0)}>Today</button>
+      <button className="navigation__icon-btn" onClick={() => setCurrentWeek(currentWeek - 1)}>
+        <i className="fas fa-chevron-left" />
+      </button>
+      <button className="navigation__icon-btn" onClick={() => setCurrentWeek(currentWeek + 1)}>
+        <i className="fas fa-chevron-right" />
+      </button>
+      <span className="navigation__displayed-month">
+        {`${correctMonthsString} ${correctYearsString}`}
+      </span>
+    </div>
+  )
 }
 
-export default Navigation;
+Navigation.propTypes = {
+  setCurrentWeek: PropTypes.func.isRequired, 
+  currentWeek: PropTypes.number.isRequired,
+}
+
+export default Navigation

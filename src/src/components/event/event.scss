@@ -1,27 +1,58 @@
 .event {
-    position: absolute;
-    width: 80%;
-    background-color: cornflowerblue;
-    z-index: 1;
-    border-radius: 8px;
-    padding: 8px;
-    color: #fff;
-  
-    &__title {
-        width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        margin-bottom: 8px;
-    }
+  width: 90%;
+  height: 60px;
+  background-color: cornflowerblue;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #fff;
+  padding: 6px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
 
-    &:hover {
-      font-weight: bold;
-      background-color: red;
-    }
+  &__title,
+  &__description,
+  &__time {
+      width: 100%;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
   }
-  
-  .delete-event-btn {
-    cursor: pointer;
-    border: none;
+  &__title,
+  &__time {
+      width: 85%;
   }
+  & div {
+      margin-bottom: 2px;
+  }
+
+  &__close-btn {
+      color: #fff;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      font-size: 16px;
+      height: auto;
+      z-index: 10;
+  }
+  &__delete-tooltip {
+      z-index: 100;
+      position: absolute;
+      right: -83px;
+      bottom: -34px;
+      text-align: center;
+      background-color: #fff;
+      width: 80%;
+      height: 35px;
+      color: #000;
+      border-radius: 4px;
+      line-height: 35px;
+      -webkit-box-shadow: 0px 0px 26px -2px rgba(0, 0, 0, 0.63);
+      -moz-box-shadow: 0px 0px 26px -2px rgba(0, 0, 0, 0.63);
+      box-shadow: 0px 0px 26px -2px rgba(0, 0, 0, 0.63);
+      cursor: pointer;
+  }
+}

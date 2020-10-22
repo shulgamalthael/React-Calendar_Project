@@ -1,24 +1,17 @@
-.calendar {
+.sidebar {
+    width: 60px;
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 60px);
-
-    &__time-scale {
-        height: 100%;
-        width: 48px;
+    margin: auto;
+    &__time-slot {
+      min-height: 60px;
+      text-align: right;
     }
-}
-
-.time-slot {
-    height: 60px;
-    width: 48px;
-    text-align: right;
-
     &__time {
-       // position: relative;
-        font-size: 12px;
-        opacity: 0.7;
-        top: -12px;
-        margin-right: 4px;
+      font-size: 10px;
+      position: relative;
+      top: -15px;
+      margin-right: 5px;
     }
-}
+  }
+  

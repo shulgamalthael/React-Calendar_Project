@@ -1,17 +1,35 @@
-.calendar {
+.navigation {
     display: flex;
-    flex-direction: column;
-    height: calc(100vh - 60px);
-
-    &__header {
-        display: flex;
-        height: 100px;
-        padding-left: 48px;
+    align-items: center;
+    &__today-btn {
+        margin-left: 20px;
+        padding: 5px 15px;
+        border: none;
+        background: none;
+        text-shadow: 2px 1px white, 0 0 3.33px black;
+        &:hover {
+            color: white;
+            // transition: 0.333s ease-in-out;
+            text-shadow: 2px 1px black, 0 0 3.33px white;
+        }
     }
-
-    &__day {
-        position: relative;
-        flex: 1;
-        border-left: 1px solid #eee;
+  
+    &__icon-btn {
+        margin-left: 20px;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        text-shadow: 1px 0px white, 0 0 3.33px black;
+        &:hover {
+            color: white;
+            text-shadow: 2px 1px black, 0 0 3.33px white;
+        }
     }
-}
+  
+    &__displayed-month{
+      margin-left: 20px;
+      text-decoration: underline rgba(0, 0, 0, 0.777);
+      text-transform: uppercase;
+    }
+  }
+  

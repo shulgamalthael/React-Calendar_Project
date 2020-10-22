@@ -1,49 +1,34 @@
-import React, { Component } from 'react';
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import './modal.scss';
 
-class Modal extends Component {
 
+const Modal = ({ children, reset, isVisibleModal }) => {
 
-    render() {
+  const modalClassName = !isVisibleModal
+    ? 'modal overlay hidden'
+    : 'modal overlay';
 
-        return (
-            <div className="modal overlay">
-                <div className="modal__content">
-                    <div className="create-event">
-                        <button className="create-event__close-btn">+</button>
-                        <form className="event-form">
-                            <input type="text"
-                                name="title"
-                                placeholder="Title"
-                                className="event-form__field"
-                            />
-                            <div className="event-form__time">
-                                <input type="date"
-                                    name="date"
-                                    className="event-form__field"
-                                />
-                                <input type="time"
-                                    name="startTime"
-                                    className="event-form__field"
-                                    onChange={this.handleChange}
-                                />
-                                <span>-</span>
-                                <input type="time"
-                                    name="endTime"
-                                    className="event-form__field"
-                                />
-                            </div>
-                            <textarea name="description"
-                                placeholder="Description"
-                                className="event-form__field">
-                            </textarea>
-                            <button type="submit" className="event-form__submit-btn">Create</button>
-                        </form>
-                    </div>
-                </div>
-            </div>)
-    }
+  return (
+    <div className={modalClassName}>
+      <div className="modal__content">
+        <div className="create-event">
+          <button className="close-btn" onClick={() => reset()}>+</button>
+          {children}
+        </div>
+      </div>
+    </div>
+  )
 }
 
-export default Modal;
+Modal.propTypes = {
+  children: PropTypes.element,
+  isVisibleModal: PropTypes.bool.isRequired,
+  reset: PropTypes.func.isRequired,
+}
+
+Modal.defaultProps = {
+  children: null
+}
+
+export default Modal

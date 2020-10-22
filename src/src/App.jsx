@@ -1,25 +1,59 @@
-import React, { Component } from 'react';
-import Header from './components/header/Header.jsx';
-import Calendar from './components/calendar/Calendar.jsx';
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header/Header';
+import { getEventsList } from './services/gateway';
+import { initialFormData } from './storage';
+import Week from './components/Week/Week';
+import CalendarWeekHeader from './components/CalendarWeekHeader/CalendarWeekHeader';
+import Modal from './components/Modal/Modal';
+import CreateEventForm from './components/CreateEventForm/CreateEventForm'
 
-import { getWeekStartDate, generateWeekRange } from '../src/utils/dateUtils.js';
+const App = () => {
+  const [currentWeek, setCurrentWeek] = useState(0);
+  const [events, updateEvents] = useState([]);
+  const [isVisibleModal, toggleVisibleModal] = useState(false);
+  const [newEventData, setNewEventData] = useState(initialFormData);
 
-import './common.scss';
+  const fetchEvents = () => getEventsList()
+    .then(data => updateEvents(data))
+    .catch(error => alert(error));
 
-class App extends Component {
+  useEffect(() => {
+    fetchEvents()
+  }, []);
 
-    state = {
-        weekStartDate: new Date(),
-    }
+  const reset = () => {
+    toggleVisibleModal(false);
+    setNewEventData(initialFormData)
+  }
 
-    render() {
-        const { weekStartDate } = this.state;
-        const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
-
-        return (<>
-            <Header />
-            <Calendar weekDates={weekDates} />
-        </>)
-    }
-};
-export default App;
+  return (
+    <>
+      <Header
+        setCurrentWeek={setCurrentWeek}
+        currentWeek={currentWeek}
+        toggleVisibleModal={toggleVisibleModal}
+      />
+      <main className="calendar">
+        <CalendarWeekHeader currentWeek={currentWeek} />
+        <Week
+          events={events}
+          currentWeek={currentWeek}
+          fetchEvents={fetchEvents}
+          setNewEventData={setNewEventData}
+          toggleVisibleModal={toggleVisibleModal}
+        />
+      </main>
+      <Modal
+        isVisibleModal={isVisibleModal}
+        reset={reset}
+      >
+        <CreateEventForm
+            newEventData={newEventData}
+            fetchEvents={fetchEvents}
+            reset={reset}
+          />
+      </Modal>
+    </>
+  )
+}
+export default App

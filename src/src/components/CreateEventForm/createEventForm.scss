@@ -1,0 +1,32 @@
+.create-event {
+    display: flex;
+    flex-direction: column;
+  
+    &__field {
+        border: 0;
+        width: 100%;
+    };
+  
+    &__time-block {
+        margin: 50px 0;
+    }
+    &__submit-btn {
+        margin-top: 15px;
+        border: 0;
+        background-color: cornflowerblue;
+        width: 120px;
+        padding: 10px 16px;
+        color: #fff;
+        border-radius: 8px;
+        float: right;
+    };
+    & textarea {
+        resize: none;
+        height: 100px;
+    };
+    
+    & input,
+    textarea {
+        border: none;
+    }
+  }

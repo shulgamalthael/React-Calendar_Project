@@ -1,0 +1,36 @@
+.calendar {
+    &__header {
+        display: flex;
+        width: 100%;
+        margin-top: 20px;
+        padding-left: 60px;
+        padding-right: 20px;
+    }
+    &__day-name {
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+    &__day-number {
+        font-size: 16px;
+        margin-top: 10px;
+        border-radius: 50%;
+        padding: 7px;
+    }
+
+    &__day-label {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        height: 100%;
+        align-items: center;
+        &.today {
+            & .calendar__day-name {
+                color: #1a73e8;
+            }
+            & .calendar__day-number {
+                color: #fff;
+                background-color: #1a73e8;
+            }
+        }
+    }
+}

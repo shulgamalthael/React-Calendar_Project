@@ -1,19 +1,16 @@
 import React from 'react';
+import './sidebar.scss'
 
-import './sidebar.scss';
-
-const Sidebar = (props) => {
-    const hours = Array(24).fill().map((val, index) => index);
-
-    return (
-        <div className="calendar__time-scale">
-            {hours.map(hour =>
-                <div className="time-slot">
-                    <span className="time-slot__time">{`${hour}:00`}</span>
-                </div>
-            )}
+const Sidebar = () => {
+  return (
+    <div className="calendar__sidebar sidebar">
+      {[...Array(24).keys()].map(time => (
+        <div className="sidebar__time-slot" key={time}>
+          <span className="sidebar__time">{`${time}:00`}</span>
         </div>
-    )
+      ))}
+    </div>
+  )
 }
 
-export default Sidebar;
+export default Sidebar
