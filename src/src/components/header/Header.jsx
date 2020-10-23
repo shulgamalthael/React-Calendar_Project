@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'; 
-import Navigation from '../Navigation/Navigation'
+import Navigation from '../navigation/Navigation'
 import './header.scss';
 
 const Header = ({ setCurrentWeek, currentWeek, toggleVisibleModal }) => {

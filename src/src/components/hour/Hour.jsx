@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types'; 
-import Event from '../Event/Event';
+import Event from '../event/Event';
 import './hour.scss';
 
 const Hour = ({ 

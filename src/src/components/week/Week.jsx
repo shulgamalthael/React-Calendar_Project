@@ -1,13 +1,13 @@
 import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types'; 
-import Sidebar from '../Sidebar/Sidebar';
-import Day from '../Day/Day';
+import Sidebar from '../sidebar/Sidebar';
+import Day from '../day/Day';
 import { generateWeek } from '../../utils';
 import './week.scss';
 
 const Week = ({ events, currentWeek, fetchEvents, setNewEventData, toggleVisibleModal }) => {
-  
+
   const week = generateWeek(currentWeek);
 
   const getEventsInCurrentDay = day => events.filter(({ date }) => date === day);
