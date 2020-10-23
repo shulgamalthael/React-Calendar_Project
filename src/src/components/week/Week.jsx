@@ -6,13 +6,8 @@ import Day from '../Day/Day';
 import { generateWeek } from '../../utils';
 import './week.scss';
 
-const Week = ({ 
-  events, 
-  currentWeek, 
-  fetchEvents, 
-  setNewEventData,
-  toggleVisibleModal
-}) => {
+const Week = ({ events, currentWeek, fetchEvents, setNewEventData, toggleVisibleModal }) => {
+  
   const week = generateWeek(currentWeek);
 
   const getEventsInCurrentDay = day => events.filter(({ date }) => date === day);

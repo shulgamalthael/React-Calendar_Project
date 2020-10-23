@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header/Header';
+import Header from './components/header/Header';
 import { getEventsList } from './services/gateway';
 import { initialFormData } from './storage';
-import Week from './components/Week/Week';
-import CalendarWeekHeader from './components/WeekHeader/WeekHeader';
-import Modal from './components/Modal/Modal';
-import CreateEventForm from './components/CreateEventForm/CreateEventForm'
+import Week from './components/week/Week';
+import CalendarWeekHeader from './components/weekHeader/WeekHeader';
+import Modal from './components/modal/Modal';
+import EventForm from './components/eventForm/EventForm'
 
 const App = () => {
   const [currentWeek, setCurrentWeek] = useState(0);
@@ -47,7 +47,7 @@ const App = () => {
         isVisibleModal={isVisibleModal}
         reset={reset}
       >
-        <CreateEventForm
+        <EventForm
             newEventData={newEventData}
             fetchEvents={fetchEvents}
             reset={reset}

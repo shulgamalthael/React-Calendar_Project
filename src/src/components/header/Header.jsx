@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import Navigation from '../Navigation/Navigation'
 import './header.scss';
 
-const Header = ({
-  setCurrentWeek,
-  currentWeek,
-  toggleVisibleModal
-}) => {
+const Header = ({ setCurrentWeek, currentWeek, toggleVisibleModal }) => {
   return (
     <header className="header">
       <button
