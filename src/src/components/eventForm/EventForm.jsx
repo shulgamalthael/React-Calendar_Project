@@ -77,7 +77,7 @@ class CreateEventForm extends React.Component {
             value={timeStart}
             onChange={this.handleChangeFormInput}
           />
-          <span>-</span>
+          <span></span>
           <input
             type="time"
             name="timeEnd"

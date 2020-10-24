@@ -11,6 +11,8 @@
   display: flex;
   flex-direction: column;
   align-items: left;
+  box-shadow: 4px 4px 7.77px 3.33px rgba(0, 0, 0, 0.777);
+  font-weight: 900;
 
   &__title,
   &__description,
@@ -52,7 +54,9 @@
       line-height: 35px;
       -webkit-box-shadow: 0px 0px 26px -2px rgba(0, 0, 0, 0.63);
       -moz-box-shadow: 0px 0px 26px -2px rgba(0, 0, 0, 0.63);
-      box-shadow: 0px 0px 26px -2px rgba(0, 0, 0, 0.63);
+      box-shadow: 0 0 10px 3.33px rgba(0, 0, 0, 0.777);
+      border: 0.25px solid black;
+      text-transform: uppercase;
       cursor: pointer;
   }
 }
